@@ -18,8 +18,8 @@ public class EmployeeServiceImpl implements EmployeeService{
 	EmployeeJPARepository employeeJPARepository;
 	
 	@Override
-	public int addEmployee(EmployeeModelJPA employeeModelJPA) {
-		int returnValue = ResultContants.RESULT_CODE.FAIL.getCode();
+	public String addEmployee(EmployeeModelJPA employeeModelJPA) {
+		String returnValue = ResultContants.RESULT_CODE.FAIL.getResultCode();
 		try {
 			System.out.println("debug01");
 			if(employeeJPARepository.findByLoginAccount(employeeModelJPA.getLoginAccount()).isEmpty()) {
@@ -27,13 +27,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 				if(employeeJPARepository.findByEmployeeId(employeeModelJPA.getEmployeeId()).isEmpty()) {
 					employeeJPARepository.save(employeeModelJPA);
 				}else {
-					return ResultContants.RESULT_CODE.EMPLOYEE_IS_EXIST.getCode();
+					return ResultContants.RESULT_CODE.EMPLOYEE_IS_EXIST.getResultCode();
 				}
 			
 			}else {
-				return ResultContants.RESULT_CODE.LOGIN_ACCOUNT_IS_EXIST.getCode();
+				return ResultContants.RESULT_CODE.LOGIN_ACCOUNT_IS_EXIST.getResultCode();
 			}
-			returnValue = ResultContants.RESULT_CODE.SUCCESS.getCode();
+			returnValue = ResultContants.RESULT_CODE.SUCCESS.getResultCode();
 		} catch (Throwable e) {
 			System.out.println("debug02");
 		}
@@ -41,11 +41,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public int updateEmployee(EmployeeModelJPA employeeModelJPA) {
-		int returnValue = ResultContants.RESULT_CODE.FAIL.getCode();
+	public String updateEmployee(EmployeeModelJPA employeeModelJPA) {
+		String returnValue = ResultContants.RESULT_CODE.FAIL.getResultCode();
 //		employeeJPARepository.updateEmployee(employeeModelJPA.getEmployeeId(),employeeModelJPA.getEmployeeName(),employeeModelJPA.getLoginCode(),employeeModelJPA.getModifiedBy());
 		employeeJPARepository.updateEmployee(employeeModelJPA.getEmployeeId(),employeeModelJPA.getEmployeeName(),employeeModelJPA.getLoginCode(),employeeModelJPA.getModifiedTime(),employeeModelJPA.getModifiedBy());
-		returnValue = ResultContants.RESULT_CODE.SUCCESS.getCode();
+		returnValue = ResultContants.RESULT_CODE.SUCCESS.getResultCode();
 		return returnValue;
 	}
 
@@ -62,10 +62,10 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public int deleteEmployee(String employeeId) {
+	public String deleteEmployee(String employeeId) {
 		// TODO Auto-generated method stub
 		employeeJPARepository.deleteByEmployeeId(employeeId);
-		return 0;
+		return "200";
 	}
 	
 }

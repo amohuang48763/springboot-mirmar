@@ -4,30 +4,39 @@ package com.demo.miramar.result;
 public class ResultContants {
 	
 	public enum RESULT_CODE{
-		LOGIN_ACCOUNT_IS_EXIST(101),
-		EMPLOYEE_IS_EXIST(102),
-		LOGIN_FAIL(104),
-		SUCCESS(200),
-		FAIL(199);
+		LOGIN_ACCOUNT_IS_EXIST("101",101),
+		EMPLOYEE_IS_EXIST("101",102),
+		LOGIN_FAIL("104",104),
+		SUCCESS("200",200),
+		FAIL("199",199);
 		
-		private final int code;
+		private final int numberCode;
+		private final String resultCode;
 
-		private RESULT_CODE(int _code) {
-            code = _code;
+		private RESULT_CODE(String string, int i) {
+			numberCode = i;
+			resultCode = string;
         }
 		
 		/**
          * @return
          */
-        public int getCode() {
-            return code;
+        public int getNumberCode() {
+            return numberCode;
+        }
+        
+        /**
+         * @return
+         */
+        public String getResultCode() {
+            return resultCode;
         }
         
         /**
          * @return
          */
         public String getCodeToString() {
-            return String.valueOf(code);
+            return String.valueOf(numberCode);
         }
 
 	}

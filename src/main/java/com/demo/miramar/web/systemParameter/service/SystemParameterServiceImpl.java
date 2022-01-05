@@ -20,7 +20,7 @@ public class SystemParameterServiceImpl implements SystemParameterService{
 	SystemParameterJPARepository systemParameterJPARepository;
 	
 	
-	public int addSystemParameter(SystemParameterModelJPA systemParameterModelJPA) {
+	public String addSystemParameter(SystemParameterModelJPA systemParameterModelJPA) {
 		
 		SystemParameterModelJPA insertModel = new SystemParameterModelJPA();
 		insertModel.setSystemId(systemParameterModelJPA.getSystemId());
@@ -35,7 +35,7 @@ public class SystemParameterServiceImpl implements SystemParameterService{
 		systemParameterModelJPA.setModifiedTime(today);
 		systemParameterJPARepository.save(systemParameterModelJPA);
 		
-		return 1;
+		return "200";
 	}
 
 	@Override

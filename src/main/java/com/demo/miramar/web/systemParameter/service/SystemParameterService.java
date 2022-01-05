@@ -6,7 +6,7 @@ import com.demo.miramar.web.systemParameter.model.SystemParameterModelJPA;
 
 public interface SystemParameterService {
 
-	public int addSystemParameter(SystemParameterModelJPA systemParameterModelJPA);
+	public String addSystemParameter(SystemParameterModelJPA systemParameterModelJPA);
 	
 	public List<SystemParameterModelJPA> getAllSystemParameterList();
 

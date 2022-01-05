@@ -6,15 +6,15 @@ import com.demo.miramar.web.employee.model.EmployeeModelJPA;
 
 public interface EmployeeService {
 	
-	public int addEmployee(EmployeeModelJPA employeeModelJPA);
+	public String addEmployee(EmployeeModelJPA employeeModelJPA);
 	
-	public int updateEmployee(EmployeeModelJPA employeeModelJPA);
+	public String updateEmployee(EmployeeModelJPA employeeModelJPA);
 	
 	public EmployeeModelJPA getEmployee(String employeeId);
 	
 	public List<EmployeeModelJPA> getAllEmployeeList();
 	
-	public int deleteEmployee(String employeeId);
+	public String deleteEmployee(String employeeId);
 
 
 }
