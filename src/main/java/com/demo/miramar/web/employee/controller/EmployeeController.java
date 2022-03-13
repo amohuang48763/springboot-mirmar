@@ -43,7 +43,7 @@ public class EmployeeController extends ControllerAbstract{
 	public JsonObject loginEmployee(@RequestBody Object jsonObjectRequest) {
 
 		JsonObject jsonObject = toRequestJsonObject(jsonObjectRequest);
-		ResultCommon.setResponseCode(jsonObject, ResultContants.RESULT_CODE.LOGIN_FAIL.getResultCode());
+		ResultCommon.setResponseCode(jsonObject, ResultContants.RESULT_CODE.FAIL.getResultCode());
 
 		 List<EmployeeModelJPA> resultList = employeeJPARepository.findCheckMemberAccount(jsonObject.get("loginAccount").getAsString(),
 				jsonObject.get("loginCode").getAsString());
@@ -64,11 +64,11 @@ public class EmployeeController extends ControllerAbstract{
 	/* 修改員工 */
 	@ResponseBody
 	@RequestMapping(value = "/api/updateEmployee", method = RequestMethod.POST,produces = "application/json; charset=utf-8")
-	public  String updateEmployee(@RequestBody Object jsonObjectRequest) {
+	public  JsonObject updateEmployee(@RequestBody Object jsonObjectRequest) {
 
 		JsonObject jsonObject = toRequestJsonObject(jsonObjectRequest);
 		System.out.println("debug01");
-		ResultCommon.setResponseCode(jsonObject, ResultContants.RESULT_CODE.LOGIN_FAIL.getResultCode());
+		ResultCommon.setResponseCode(jsonObject, ResultContants.RESULT_CODE.FAIL.getResultCode());
 		System.out.println("debug02");
 		EmployeeModelJPA employeeRequest = gson.fromJson(jsonObject.toString(), EmployeeModelJPA.class);
 		System.out.println("debug03");
@@ -90,7 +90,7 @@ public class EmployeeController extends ControllerAbstract{
 		System.out.println("debug04");
 		System.out.println(jsonObject);
 		
-		return jsonObject.toString();
+		return jsonObject;
 	}
 	
 	/* 新增員工 */
@@ -103,7 +103,7 @@ public class EmployeeController extends ControllerAbstract{
 		EmployeeModelJPA employeeRequest = gson.fromJson(jsonObject.toString(), EmployeeModelJPA.class);
 		
 		//檢查有無登入
-		if(MiramarLoginSessionMap.getInstance().extensionLoginSession(employeeRequest.getEmployeeId())) {
+//		if(MiramarLoginSessionMap.getInstance().extensionLoginSession(employeeRequest.getEmployeeId())) {
 		EmployeeModelJPA employeeModel = new EmployeeModelJPA();
 		employeeModel.setEmployeeId(employeeRequest.getEmployeeId());
 		employeeModel.setEmployeeName(employeeRequest.getEmployeeName());
@@ -120,7 +120,7 @@ public class EmployeeController extends ControllerAbstract{
 
 		String result = employeeService.addEmployee(employeeModel);
 		ResultCommon.setResponseCode(jsonObject, result);
-		}
+//		}
 		return jsonObject;
 	}
 	
